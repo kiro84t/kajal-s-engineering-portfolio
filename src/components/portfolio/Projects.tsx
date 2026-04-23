@@ -270,8 +270,23 @@ const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
                 View details
                 <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
               </button>
-            </div>
-          </article>
+      </div>
+    </article>
+  );
+};
+
+const Projects = () => (
+  <section id="projects" className="section-padding bg-surface">
+    <div className="container-narrow">
+      <SectionHeading
+        index="03"
+        title="Selected Projects"
+        subtitle="A small but growing collection of mechanical design and modeling work."
+      />
+
+      <div className="space-y-8">
+        {projects.map((p, i) => (
+          <ProjectCard key={p.id} p={p} i={i} />
         ))}
 
         {/* Placeholder card for future projects */}
