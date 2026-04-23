@@ -1,0 +1,113 @@
+import SectionHeading from "./SectionHeading";
+import { ArrowUpRight, Plus } from "lucide-react";
+import gripper from "@/assets/project-gripper.jpg";
+import college from "@/assets/project-college.jpg";
+
+const projects = [
+  {
+    id: "01",
+    image: gripper,
+    title: "2-Jaw Robotic Gripper",
+    tag: "Fusion 360 · Robotics",
+    description:
+      "Designed and assembled a functional 2-jaw robotic gripper using Fusion 360. Implemented joints and motion constraints to simulate realistic gripping action.",
+    points: [
+      "Used revolute and rigid joints",
+      "Motion simulation included",
+      "Focus on mechanical movement accuracy",
+    ],
+  },
+  {
+    id: "02",
+    image: college,
+    title: "College Mini Model",
+    tag: "3D Printing · Team Project",
+    description:
+      "Designed the external structure of a college model for 3D printing as part of a team project. Worked on front elevation and overall exterior design.",
+    points: [
+      "Role: Front elevation & exterior",
+      "Team of 3 members",
+      "Structural design and visual accuracy",
+    ],
+  },
+];
+
+const Projects = () => (
+  <section id="projects" className="section-padding bg-surface">
+    <div className="container-narrow">
+      <SectionHeading
+        index="03"
+        title="Selected Projects"
+        subtitle="A small but growing collection of mechanical design and modeling work."
+      />
+
+      <div className="space-y-8">
+        {projects.map((p, i) => (
+          <article
+            key={p.id}
+            className="group grid md:grid-cols-5 gap-0 bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-[var(--shadow-lg)] transition-all duration-500"
+          >
+            <div
+              className={`md:col-span-3 relative overflow-hidden bg-secondary aspect-[4/3] md:aspect-auto ${
+                i % 2 === 1 ? "md:order-2" : ""
+              }`}
+            >
+              <img
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                width={1280}
+                height={896}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute top-4 left-4 font-mono text-[10px] tracking-wider uppercase px-2 py-1 bg-background/90 backdrop-blur-sm rounded">
+                Project {p.id}
+              </div>
+            </div>
+
+            <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center">
+              <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-3">
+                {p.tag}
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">
+                {p.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                {p.description}
+              </p>
+              <ul className="space-y-2 mb-6">
+                {p.points.map((pt) => (
+                  <li
+                    key={pt}
+                    className="flex items-start gap-2 text-sm text-foreground/80"
+                  >
+                    <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+              <button className="self-start inline-flex items-center gap-1.5 text-sm font-medium text-primary group/btn">
+                View details
+                <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              </button>
+            </div>
+          </article>
+        ))}
+
+        {/* Placeholder card for future projects */}
+        <div className="border border-dashed border-border rounded-xl p-12 flex flex-col items-center justify-center text-center bg-card/50 hover:border-primary/40 transition-colors">
+          <div className="w-12 h-12 rounded-full bg-primary-muted flex items-center justify-center mb-4">
+            <Plus className="w-5 h-5 text-primary" />
+          </div>
+          <h3 className="font-semibold mb-2">More projects coming soon</h3>
+          <p className="text-sm text-muted-foreground max-w-md">
+            Currently working on new mechanical design and robotics experiments.
+            Check back soon.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+export default Projects;
