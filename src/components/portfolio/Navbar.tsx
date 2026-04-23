@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "#about", label: "About" },
@@ -41,12 +42,15 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <a
-          href="#contact"
-          className="hidden md:inline-flex text-xs font-medium px-4 py-2 rounded-md border border-border hover:border-primary hover:text-primary transition-colors"
-        >
-          Get in touch
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            className="hidden md:inline-flex text-xs font-medium px-4 py-2 rounded-md border border-border hover:border-primary hover:text-primary transition-colors"
+          >
+            Get in touch
+          </a>
+        </div>
       </nav>
     </header>
   );
