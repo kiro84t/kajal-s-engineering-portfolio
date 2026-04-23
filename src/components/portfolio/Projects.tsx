@@ -129,27 +129,7 @@ const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
         )}
       </div>
 
-          <article
-            key={p.id}
-            className="group grid md:grid-cols-5 gap-0 bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-[var(--shadow-lg)] transition-all duration-500"
-          >
-            <div
-              className={`md:col-span-3 relative overflow-hidden bg-secondary aspect-[4/3] md:aspect-auto ${
-                i % 2 === 1 ? "md:order-2" : ""
-              }`}
-            >
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                width={1280}
-                height={896}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute top-4 left-4 font-mono text-[10px] tracking-wider uppercase px-2 py-1 bg-background/90 backdrop-blur-sm rounded">
-                Project {p.id}
-              </div>
-            </div>
+      <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center">
 
             <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center">
               <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-3">
