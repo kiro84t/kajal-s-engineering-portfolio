@@ -83,17 +83,52 @@ const projects: Project[] = [
   },
 ];
 
-const Projects = () => (
-  <section id="projects" className="section-padding bg-surface">
-    <div className="container-narrow">
-      <SectionHeading
-        index="03"
-        title="Selected Projects"
-        subtitle="A small but growing collection of mechanical design and modeling work."
-      />
+const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
+  const gallery = p.images ?? [p.image];
+  const [active, setActive] = useState(0);
+  return (
+    <article
+      className="group grid md:grid-cols-5 gap-0 bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-[var(--shadow-lg)] transition-all duration-500"
+    >
+      <div
+        className={`md:col-span-3 relative overflow-hidden bg-secondary ${
+          i % 2 === 1 ? "md:order-2" : ""
+        }`}
+      >
+        <div className="relative aspect-[4/3] md:aspect-auto md:h-full overflow-hidden">
+          <img
+            src={gallery[active]}
+            alt={p.title}
+            loading="lazy"
+            width={1280}
+            height={896}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div className="absolute top-4 left-4 font-mono text-[10px] tracking-wider uppercase px-2 py-1 bg-background/90 backdrop-blur-sm rounded">
+            Project {p.id}
+          </div>
+        </div>
+        {gallery.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 p-1.5 rounded-lg bg-background/80 backdrop-blur-sm border border-border">
+            {gallery.map((src, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActive(idx)}
+                aria-label={`View image ${idx + 1}`}
+                className={`w-12 h-12 rounded-md overflow-hidden border transition-all ${
+                  active === idx
+                    ? "border-primary ring-1 ring-primary"
+                    : "border-border opacity-70 hover:opacity-100"
+                }`}
+              >
+                <img src={src} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
-      <div className="space-y-8">
-        {projects.map((p, i) => (
           <article
             key={p.id}
             className="group grid md:grid-cols-5 gap-0 bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-[var(--shadow-lg)] transition-all duration-500"
