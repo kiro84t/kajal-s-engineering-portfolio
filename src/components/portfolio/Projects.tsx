@@ -1,12 +1,17 @@
+import { useState } from "react";
 import SectionHeading from "./SectionHeading";
 import { ArrowUpRight, Plus, Wrench, Sparkles, TrendingUp } from "lucide-react";
-import gripper from "@/assets/project-gripper.jpg";
+import gripperClosed from "@/assets/project-gripper-closed.png";
+import gripperOpen from "@/assets/project-gripper-open.png";
 import college from "@/assets/project-college.png";
-import iris from "@/assets/project-iris.jpg";
+import college2 from "@/assets/project-college-2.png";
+import irisClosed from "@/assets/project-iris-closed.png";
+import irisOpen from "@/assets/project-iris-open.png";
 
 type Project = {
   id: string;
   image: string;
+  images?: string[];
   title: string;
   tag: string;
   description: string;
@@ -22,7 +27,8 @@ type Project = {
 const projects: Project[] = [
   {
     id: "01",
-    image: gripper,
+    image: gripperClosed,
+    images: [gripperClosed, gripperOpen],
     title: "2-Jaw Robotic Gripper",
     tag: "Fusion 360 · Robotics",
     description:
@@ -36,6 +42,7 @@ const projects: Project[] = [
   {
     id: "02",
     image: college,
+    images: [college, college2],
     title: "College Mini Model",
     tag: "3D Printing · Team Project",
     description:
@@ -48,7 +55,8 @@ const projects: Project[] = [
   },
   {
     id: "03",
-    image: iris,
+    image: irisClosed,
+    images: [irisClosed, irisOpen],
     title: "Compliant Iris Mechanism",
     tag: "Fusion 360 · Compliant Design",
     description:
@@ -75,40 +83,54 @@ const projects: Project[] = [
   },
 ];
 
-const Projects = () => (
-  <section id="projects" className="section-padding bg-surface">
-    <div className="container-narrow">
-      <SectionHeading
-        index="03"
-        title="Selected Projects"
-        subtitle="A small but growing collection of mechanical design and modeling work."
-      />
+const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
+  const gallery = p.images ?? [p.image];
+  const [active, setActive] = useState(0);
+  return (
+    <article
+      className="group grid md:grid-cols-5 gap-0 bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-[var(--shadow-lg)] transition-all duration-500"
+    >
+      <div
+        className={`md:col-span-3 relative overflow-hidden bg-secondary ${
+          i % 2 === 1 ? "md:order-2" : ""
+        }`}
+      >
+        <div className="relative aspect-[4/3] md:aspect-auto md:h-full overflow-hidden">
+          <img
+            src={gallery[active]}
+            alt={p.title}
+            loading="lazy"
+            width={1280}
+            height={896}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div className="absolute top-4 left-4 font-mono text-[10px] tracking-wider uppercase px-2 py-1 bg-background/90 backdrop-blur-sm rounded">
+            Project {p.id}
+          </div>
+        </div>
+        {gallery.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 p-1.5 rounded-lg bg-background/80 backdrop-blur-sm border border-border">
+            {gallery.map((src, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActive(idx)}
+                aria-label={`View image ${idx + 1}`}
+                className={`w-12 h-12 rounded-md overflow-hidden border transition-all ${
+                  active === idx
+                    ? "border-primary ring-1 ring-primary"
+                    : "border-border opacity-70 hover:opacity-100"
+                }`}
+              >
+                <img src={src} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
-      <div className="space-y-8">
-        {projects.map((p, i) => (
-          <article
-            key={p.id}
-            className="group grid md:grid-cols-5 gap-0 bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-[var(--shadow-lg)] transition-all duration-500"
-          >
-            <div
-              className={`md:col-span-3 relative overflow-hidden bg-secondary aspect-[4/3] md:aspect-auto ${
-                i % 2 === 1 ? "md:order-2" : ""
-              }`}
-            >
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                width={1280}
-                height={896}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute top-4 left-4 font-mono text-[10px] tracking-wider uppercase px-2 py-1 bg-background/90 backdrop-blur-sm rounded">
-                Project {p.id}
-              </div>
-            </div>
+      <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center">
 
-            <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center">
               <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-3">
                 {p.tag}
               </div>
@@ -247,8 +269,23 @@ const Projects = () => (
                 View details
                 <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
               </button>
-            </div>
-          </article>
+      </div>
+    </article>
+  );
+};
+
+const Projects = () => (
+  <section id="projects" className="section-padding bg-surface">
+    <div className="container-narrow">
+      <SectionHeading
+        index="03"
+        title="Selected Projects"
+        subtitle="A small but growing collection of mechanical design and modeling work."
+      />
+
+      <div className="space-y-8">
+        {projects.map((p, i) => (
+          <ProjectCard key={p.id} p={p} i={i} />
         ))}
 
         {/* Placeholder card for future projects */}
