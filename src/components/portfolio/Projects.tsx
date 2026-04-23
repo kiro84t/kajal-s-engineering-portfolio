@@ -131,7 +131,6 @@ const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
 
       <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center">
 
-            <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center">
               <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-3">
                 {p.tag}
               </div>
