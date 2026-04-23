@@ -264,11 +264,6 @@ const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
                   )}
                 </div>
               )}
-
-              <button className="self-start inline-flex items-center gap-1.5 text-sm font-medium text-primary group/btn">
-                View details
-                <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-              </button>
       </div>
     </article>
   );
