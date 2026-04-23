@@ -11,10 +11,10 @@ const items = [
   },
   {
     icon: Bot,
-    role: "New Member",
+    role: "Designer",
     org: "Robotics Team, UVCE",
-    period: "2024 — Present",
-    text: "Recently joined — actively exploring robotics, mechanisms and hands-on mechanical systems.",
+    period: "2026 — Present",
+    text: "Working on mechanical design and CAD modeling for robotics projects, contributing to mechanisms and hands-on systems.",
   },
 ];
 
