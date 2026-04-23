@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SectionHeading from "./SectionHeading";
-import { ArrowUpRight, Plus, Wrench, Sparkles, TrendingUp } from "lucide-react";
+import { Plus, Wrench, Sparkles, TrendingUp } from "lucide-react";
 import gripperClosed from "@/assets/project-gripper-closed.png";
 import gripperOpen from "@/assets/project-gripper-open.png";
 import college from "@/assets/project-college.png";
