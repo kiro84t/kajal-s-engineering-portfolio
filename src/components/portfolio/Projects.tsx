@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SectionHeading from "./SectionHeading";
-import { ArrowUpRight, Plus, Wrench, Sparkles, TrendingUp } from "lucide-react";
+import { Plus, Wrench, Sparkles, TrendingUp } from "lucide-react";
 import gripperClosed from "@/assets/project-gripper-closed.png";
 import gripperOpen from "@/assets/project-gripper-open.png";
 import college from "@/assets/project-college.png";
@@ -264,11 +264,6 @@ const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
                   )}
                 </div>
               )}
-
-              <button className="self-start inline-flex items-center gap-1.5 text-sm font-medium text-primary group/btn">
-                View details
-                <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-              </button>
       </div>
     </article>
   );
