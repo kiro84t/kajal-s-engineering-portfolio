@@ -72,11 +72,6 @@ const projects: Project[] = [
       "Smooth aperture-style opening and closing",
     ],
     tools: ["Fusion 360"],
-    future: [
-      "Stress analysis on flexure regions",
-      "Material optimization for fatigue life",
-      "Real-world prototyping via 3D printing",
-    ],
   },
 ];
 
