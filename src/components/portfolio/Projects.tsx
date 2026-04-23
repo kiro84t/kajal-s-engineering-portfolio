@@ -22,6 +22,7 @@ type Project = {
   features?: string[];
   tools?: string[];
   future?: string[];
+  sections?: { title: string; items: string[] }[];
 };
 
 const projects: Project[] = [
@@ -37,6 +38,35 @@ const projects: Project[] = [
       "Used revolute and rigid joints",
       "Motion simulation included",
       "Focus on mechanical movement accuracy",
+    ],
+    sections: [
+      {
+        title: "Mechanism & Working",
+        items: [
+          "Uses a gear-driven linkage mechanism",
+          "A small input gear drives two larger gears on either side",
+          "The two larger gears rotate in opposite directions",
+          "Each gear is connected to a set of linkages",
+          "Linkages transfer rotational motion into angular movement of the jaws",
+          "Due to symmetry, both jaws open and close simultaneously",
+        ],
+      },
+      {
+        title: "Linkage Behavior",
+        items: [
+          "Linkages act as connectors between gears and jaws",
+          "They guide the motion and maintain alignment",
+          "Proper constraints ensure smooth, controlled movement",
+          "The mechanism converts rotation into gripping action",
+        ],
+      },
+      {
+        title: "Simulation",
+        items: [
+          "Motion tested in Fusion 360 using joints and constraints",
+          "Opening and closing of jaws verified",
+        ],
+      },
     ],
   },
   {
@@ -153,6 +183,29 @@ const ProjectCard = ({ p, i }: { p: Project; i: number }) => {
                     </li>
                   ))}
                 </ul>
+              )}
+
+              {p.sections && (
+                <div className="space-y-5 mb-6">
+                  {p.sections.map((s) => (
+                    <div key={s.title}>
+                      <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-2">
+                        {s.title}
+                      </div>
+                      <ul className="space-y-2">
+                        {s.items.map((pt) => (
+                          <li
+                            key={pt}
+                            className="flex items-start gap-2 text-sm text-foreground/80"
+                          >
+                            <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               )}
 
               {p.problem && (
