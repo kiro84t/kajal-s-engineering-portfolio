@@ -1,7 +1,7 @@
 import SectionHeading from "./SectionHeading";
 import { ArrowUpRight, Plus, Wrench, Sparkles, TrendingUp } from "lucide-react";
 import gripper from "@/assets/project-gripper.jpg";
-import college from "@/assets/project-college.jpg";
+import college from "@/assets/project-college.png";
 import iris from "@/assets/project-iris.jpg";
 
 type Project = {
