@@ -1,9 +1,25 @@
 import SectionHeading from "./SectionHeading";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight, Plus, Wrench, Sparkles, TrendingUp } from "lucide-react";
 import gripper from "@/assets/project-gripper.jpg";
 import college from "@/assets/project-college.jpg";
+import iris from "@/assets/project-iris.jpg";
 
-const projects = [
+type Project = {
+  id: string;
+  image: string;
+  title: string;
+  tag: string;
+  description: string;
+  points?: string[];
+  problem?: string;
+  approach?: string[];
+  outcome?: string[];
+  features?: string[];
+  tools?: string[];
+  future?: string[];
+};
+
+const projects: Project[] = [
   {
     id: "01",
     image: gripper,
@@ -28,6 +44,38 @@ const projects = [
       "Role: Front elevation & exterior",
       "Team of 3 members",
       "Structural design and visual accuracy",
+    ],
+  },
+  {
+    id: "03",
+    image: iris,
+    title: "Compliant Iris Mechanism",
+    tag: "Fusion 360 · Compliant Design",
+    description:
+      "Designed a compliant iris mechanism inspired by camera apertures, focusing on smooth radial motion using flexible elements instead of traditional rigid joints.",
+    problem:
+      "Design a compact mechanism capable of controlled opening and closing with minimal rigid joints.",
+    approach: [
+      "Modeled the mechanism in Fusion 360",
+      "Explored compliant design principles (flexure-based motion)",
+      "Focused on smooth motion transfer and symmetry",
+      "Reduced reliance on complex assemblies",
+    ],
+    outcome: [
+      "Achieved iris-like opening/closing behavior",
+      "Demonstrated controlled deformation and motion",
+      "Improved understanding of compliant mechanisms",
+    ],
+    features: [
+      "Radial symmetry with flexure-based blades",
+      "Single-piece motion — fewer assembled parts",
+      "Smooth aperture-style opening and closing",
+    ],
+    tools: ["Fusion 360"],
+    future: [
+      "Stress analysis on flexure regions",
+      "Material optimization for fatigue life",
+      "Real-world prototyping via 3D printing",
     ],
   },
 ];
@@ -75,17 +123,131 @@ const Projects = () => (
               <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                 {p.description}
               </p>
-              <ul className="space-y-2 mb-6">
-                {p.points.map((pt) => (
-                  <li
-                    key={pt}
-                    className="flex items-start gap-2 text-sm text-foreground/80"
-                  >
-                    <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
-                    {pt}
-                  </li>
-                ))}
-              </ul>
+
+              {p.points && (
+                <ul className="space-y-2 mb-6">
+                  {p.points.map((pt) => (
+                    <li
+                      key={pt}
+                      className="flex items-start gap-2 text-sm text-foreground/80"
+                    >
+                      <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {p.problem && (
+                <div className="space-y-5 mb-6">
+                  <div>
+                    <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-2">
+                      Problem
+                    </div>
+                    <p className="text-sm text-foreground/80 leading-relaxed">
+                      {p.problem}
+                    </p>
+                  </div>
+
+                  {p.approach && (
+                    <div>
+                      <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-2">
+                        Approach
+                      </div>
+                      <ul className="space-y-2">
+                        {p.approach.map((pt) => (
+                          <li
+                            key={pt}
+                            className="flex items-start gap-2 text-sm text-foreground/80"
+                          >
+                            <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {p.outcome && (
+                    <div>
+                      <div className="font-mono text-[10px] text-primary tracking-wider uppercase mb-2">
+                        Outcome
+                      </div>
+                      <ul className="space-y-2">
+                        {p.outcome.map((pt) => (
+                          <li
+                            key={pt}
+                            className="flex items-start gap-2 text-sm text-foreground/80"
+                          >
+                            <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {p.features && (
+                    <div>
+                      <div className="flex items-center gap-1.5 font-mono text-[10px] text-primary tracking-wider uppercase mb-2">
+                        <Sparkles className="w-3 h-3" />
+                        Key Features
+                      </div>
+                      <ul className="space-y-2">
+                        {p.features.map((pt) => (
+                          <li
+                            key={pt}
+                            className="flex items-start gap-2 text-sm text-foreground/80"
+                          >
+                            <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {p.tools && (
+                    <div>
+                      <div className="flex items-center gap-1.5 font-mono text-[10px] text-primary tracking-wider uppercase mb-2">
+                        <Wrench className="w-3 h-3" />
+                        Tools Used
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {p.tools.map((t) => (
+                          <span
+                            key={t}
+                            className="text-xs px-2.5 py-1 rounded-md bg-primary-muted text-primary border border-primary/20"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {p.future && (
+                    <div>
+                      <div className="flex items-center gap-1.5 font-mono text-[10px] text-primary tracking-wider uppercase mb-2">
+                        <TrendingUp className="w-3 h-3" />
+                        Future Improvements
+                      </div>
+                      <ul className="space-y-2">
+                        {p.future.map((pt) => (
+                          <li
+                            key={pt}
+                            className="flex items-start gap-2 text-sm text-foreground/80"
+                          >
+                            <span className="mt-1.5 w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <button className="self-start inline-flex items-center gap-1.5 text-sm font-medium text-primary group/btn">
                 View details
                 <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
