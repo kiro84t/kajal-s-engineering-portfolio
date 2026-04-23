@@ -29,7 +29,8 @@ type Project = {
 const projects: Project[] = [
   {
     id: "01",
-    image: gripper,
+    image: gripperClosed,
+    images: [gripperClosed, gripperOpen],
     title: "2-Jaw Robotic Gripper",
     tag: "Fusion 360 · Robotics",
     description:
@@ -43,6 +44,7 @@ const projects: Project[] = [
   {
     id: "02",
     image: college,
+    images: [college, college2],
     title: "College Mini Model",
     tag: "3D Printing · Team Project",
     description:
@@ -55,7 +57,8 @@ const projects: Project[] = [
   },
   {
     id: "03",
-    image: iris,
+    image: irisClosed,
+    images: [irisClosed, irisOpen],
     title: "Compliant Iris Mechanism",
     tag: "Fusion 360 · Compliant Design",
     description:
